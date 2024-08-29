@@ -9,6 +9,7 @@ from .base import DataLoaderBase
 # from .davis_data import DavisDataLoader
 # from .dsec import DsecDataLoader   # TODO comes later..
 from .mvsec import MvsecDataLoader
+from .raw_sequence import RawDataLoader
 
 
 # List of supported dataset

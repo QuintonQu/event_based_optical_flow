@@ -140,7 +140,7 @@ if __name__ == "__main__":
     method_name = config["solver"]["method"]
     solv: solver.SolverBase = solver.collections[method_name](
         image_shape,
-        calibration_parameter=loader.load_calib(),
+        calibration_parameter=loader.load_calib() if config["solver"]["calib"] else None,
         solver_config=config["solver"],
         optimizer_config=config["optimizer"],
         output_config=config["output"],
@@ -172,8 +172,8 @@ if __name__ == "__main__":
         batch: np.ndarray = loader.load_event(ind1, ind2)
         batch[..., 2] -= np.min(batch[..., 2])
 
-        if utils.check_key_and_bool(data_config, "remove_car"):
-            batch = utils.crop_event(batch, 0, 193, 0, 346)  # remvoe MVSEC car
+        # if utils.check_key_and_bool(data_config, "remove_car"):
+        #     batch = utils.crop_event(batch, 0, 193, 0, 346)  # remvoe MVSEC car
 
         solv.visualize_one_batch_warp(batch)
         best_motion: np.ndarray = solv.optimize(batch)

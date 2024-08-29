@@ -1,20 +1,18 @@
 is_dnn: false
 
 data:
-  eval_dt: 4   # for MVSEC evaluation
-  root: "./datasets/MVSEC/hdf5"
-  dataset: "MVSEC"
-  sequence: "indoor_flying1"
-  height: 260
-  width: 346
+  root: "./datasets/"
+  dataset: "RAW"
+  sequence: "driving_sample_highres"
+  height: 720
+  width: 1280
   load_gt_flow: False
-  gt: "~/local/event_based_optical_flow/datasets/MVSEC/gt_flow"
-  n_events_per_batch: 30000
-  ind1: 830000
-  ind2: 860000
+  n_events_per_batch: 300000
+  ind1: 800000
+  ind2: 1400000
 
 output:
-  output_dir: "./outputs/paper/no_timeaware/indoor_flying1_dt4_my_test"
+  output_dir: "./outputs/myraw_driving_sample_highres/"
   show_interactive_result: false
 
 solver:
@@ -23,8 +21,8 @@ solver:
   patch:
     initialize: "random"
     scale: 5
-    crop_height: 256
-    crop_width: 336
+    crop_height: 720
+    crop_width: 1280
     filter_type: "bilinear"
   motion_model: "2d-translation"
   warp_direction: "first"
@@ -39,7 +37,7 @@ solver:
   iwe:
     method: "bilinear_vote"
     blur_sigma: 1
-  calib: True
+  calib: False
 
 optimizer:
   n_iter: 40

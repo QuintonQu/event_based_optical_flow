@@ -425,7 +425,7 @@ class PyramidalPatchContrastMaximization(PatchContrastMaximization):
             motion_range = np.array(
                 [0.8 * motion0[1], motion0[1] - abs_range, 1.2 * motion0[1], motion0[1] + abs_range]
             )
-        return trial.suggest_uniform(key, motion_range.min(), motion_range.max())
+        return trial.suggest_float(key, motion_range.min(), motion_range.max())
 
     def objective_scipy(
         self,
